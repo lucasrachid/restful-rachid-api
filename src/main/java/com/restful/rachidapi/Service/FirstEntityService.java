@@ -7,4 +7,6 @@ public interface FirstEntityService {
     InfoDTO getListData();
 
     InfoDTO getData();
+
+    InfoDTO getBusinessDataByCNPJ(String cnpj);
 }

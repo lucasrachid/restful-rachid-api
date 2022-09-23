@@ -30,4 +30,10 @@ public class FirstEntityController {
         InfoDTO infoDTO = firstEntityService.getListData();
         return ResponseEntity.status(infoDTO.getStatus()).body(infoDTO);
     }
+
+    @RequestMapping(value = "/getBusinessDataByCNPJ/", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<InfoDTO> getBusinessDataByCNPJ() {
+        InfoDTO infoDTO = firstEntityService.getBusinessDataByCNPJ("08706688000131");
+        return ResponseEntity.status(infoDTO.getStatus()).body(infoDTO);
+    }
 }

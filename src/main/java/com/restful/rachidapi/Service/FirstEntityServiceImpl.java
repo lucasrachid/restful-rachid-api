@@ -8,6 +8,9 @@ import com.restful.rachidapi.Entity.FirstEntity;
 import com.restful.rachidapi.Repository.FirstEntityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -45,6 +48,36 @@ public class FirstEntityServiceImpl implements FirstEntityService {
             infoDTO.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             infoDTO.setSuccess(false);
             infoDTO.setMessage(e.getMessage());
+        }
+
+        return infoDTO;
+    }
+
+    @Override
+    public InfoDTO getBusinessDataByCNPJ(String cnpj) {
+        InfoDTO<Object> infoDTO = new InfoDTO<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+
+            OkHttpClient okHttpClient = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                    .url("https://brasilapi.com.br/api/cnpj/v1/" + cnpj)
+                    .build();
+
+            Response response = okHttpClient.newCall(request).execute();
+
+            infoDTO.setMessage("Consulta realizada com sucesso!");
+            infoDTO.setStatus(HttpStatus.OK);
+            infoDTO.setSuccess(true);
+            infoDTO.setObject(response);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            infoDTO.setMessage("Erro Interno");
+            infoDTO.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            infoDTO.setSuccess(false);
         }
 
         return infoDTO;
