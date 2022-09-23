@@ -26,11 +26,15 @@ public class FirstEntityServiceImpl implements FirstEntityService {
 
     @Override
     public InfoDTO getData() {
-        InfoDTO<FirstEntity> infoDTO = new InfoDTO<>();
+        InfoDTO<FirstEntityDTO> infoDTO = new InfoDTO<>();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             FirstEntity firstEntity = firstEntityRepository.getById(1L);
-            infoDTO.setObject(firstEntity);
+            FirstEntityDTO firstEntityDTO = objectMapper.convertValue(firstEntity, new TypeReference<FirstEntityDTO>() {
+            });
+
+            infoDTO.setObject(firstEntityDTO);
             infoDTO.setStatus(HttpStatus.OK);
             infoDTO.setSuccess(true);
             infoDTO.setMessage("Operação realizada com sucesso!");
@@ -48,7 +52,7 @@ public class FirstEntityServiceImpl implements FirstEntityService {
 
     @Override
     public InfoDTO getListData() {
-        InfoDTO<Object> infoDTO = new InfoDTO<>();
+        InfoDTO<List<FirstEntityDTO>> infoDTO = new InfoDTO<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
 
