@@ -1,4 +1,4 @@
-package DTO;
+package com.restful.rachidapi.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@SpringBootApplication(scanBasePackages = {"com.restful.rachidapi", "Controller"})
+@SpringBootApplication(scanBasePackages = {"com.restful.rachidapi"})
 @RequiredArgsConstructor
 @Slf4j
 public class RachidApiApplication {

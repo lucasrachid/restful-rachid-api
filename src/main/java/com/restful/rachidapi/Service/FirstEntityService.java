@@ -1,6 +1,6 @@
-package Service;
+package com.restful.rachidapi.Service;
 
-import DTO.InfoDTO;
+import com.restful.rachidapi.DTO.InfoDTO;
 
 public interface FirstEntityService {
 

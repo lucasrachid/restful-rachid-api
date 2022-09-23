@@ -1,6 +1,6 @@
-package Repository;
+package com.restful.rachidapi.Repository;
 
-import Entity.FirstEntity;
+import com.restful.rachidapi.Entity.FirstEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
